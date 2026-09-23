@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+
+        vector<int> product(nums.size(), 1);
+
+        for(int i = 1; i < nums.size(); i++)
+        {
+            product[i] = product[i-1] * nums[i-1];
+
+        }
+
+        int suffix = 1;
+
+        for(int i = nums.size()-2; i >=0; i--)
+        {
+            suffix = nums[i+1] * suffix;
+            product[i] = suffix * product[i];
+        }
+
+        return product;
+
+    }
+};
